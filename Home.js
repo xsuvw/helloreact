@@ -7,7 +7,7 @@ export default function App() {
 
   const clickHandler = () => {
     setName('World');
-    setPerson({ name: 'Hello', age: '20 ' });
+    setPerson({ name: 'Hello', age: '2' });
   };
 
   return (
@@ -22,7 +22,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container: { 
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
