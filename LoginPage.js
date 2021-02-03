@@ -16,13 +16,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("./assets/loginImage.png")} />
+      <Image style={styles.image} source={require("./assets/favicon.png")} />
 
       <StatusBar style="auto" />
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="email"
+          placeholder="Email."
           placeholderTextColor="#003f5c"
           onChangeText={(email) => setEmail(email)}
         />
@@ -31,7 +31,7 @@ export default function App() {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="password"
+          placeholder="Password."
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
@@ -43,7 +43,7 @@ export default function App() {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>Login</Text>
+        <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
     </View>
   );
@@ -67,13 +67,15 @@ const styles = StyleSheet.create({
     width: "70%",
     height: 45,
     marginBottom: 20,
+
+    alignItems: "center",
   },
 
   TextInput: {
     height: 50,
     flex: 1,
-    marginLeft : 20,
     padding: 10,
+    marginLeft: 20,
   },
 
   forgot_button: {
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 40,
-    backgroundColor: "#FF1473",
+    backgroundColor: "#FF1493",
   },
 
   loginText: {
