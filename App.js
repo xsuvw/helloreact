@@ -1,97 +1,102 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import React from "react";
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, ImageBackground } from "react-native";
+export default class App extends React.Component {
+  state = { height: 0, mass: 0, resultNumber: 0, resultText: "" };
 
-export default function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  handleCalculate = () => {
+    let imc = (this.state.mass * 703) / this.state.height ** 2;
+    this.setState({
+      resultNumber: imc.toFixed(2),
+    });
 
-  return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={require("./assets/loginImage.png")} />
+    if (imc < 18.5) {
+      this.setState({ resultText: "Underweight" });
+    } else if (imc > 18.5 && imc < 25) {
+      this.setState({ resultText: "Normal Weight" });
+    } else if (imc >= 25 && imc < 30) {
+      this.setState({ resultText: "Overweight" });
+    } else {
+      this.setState({ resultText: "Obesity" });
+    }
+  };
 
-      <StatusBar style="auto" />
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="email"
-          placeholderTextColor="#003f5c"
-          onChangeText={(email) => setEmail(email)}
-        />
-      </View>
+  render() {
+    return (
+      <ImageBackground
+        source={require("./assets/bg.png")}
+        style={{ width: "100%", height: "100%" }}>
 
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="password"
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-      </View>
+        <View style={styles.container}>
+          <Text
+            style={{ color: "#FFCB1F", justifyContent: "center", alignSelf: "center", marginTop: 30, fontSize: 15}}>
+            BMI Calculator
+          </Text>
+          <View style={styles.intro}>
+            <TextInput
+              placeholder="height"
+              placeholderTextColor="#FFCB1F"
+              keyboardType="numeric"
+              style={styles.input}
+              onChangeText={(height) => {
+                this.setState({ height });
+              }}
+            />
+            <TextInput
+              placeholder="mass"
+              keyboardType="numeric"
+              placeholderTextColor="#FFCB1F"
+              style={styles.input}
+              onChangeText={(mass) => {
+                this.setState({ mass });
+              }}
+            />
+          </View>
 
-      <TouchableOpacity>
-        <Text style={styles.forgot_button}>Forgot Password?</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>Login</Text>
-      </TouchableOpacity>
-    </View>
-  );
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.handleCalculate}>
+            <Text style={styles.buttonText}>Calculate</Text>
+          </TouchableOpacity>
+          <Text style={styles.result}>{this.state.resultNumber}</Text>
+          <Text style={[styles.result, { fontSize: 35 }]}>
+            {this.state.resultText}
+          </Text>
+        </View>
+      </ImageBackground>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    // backgroundColor: "#f5fcff"
   },
-
-  image: {
-    marginBottom: 40,
+  intro: {
+    flexDirection: "row",
   },
-
-  inputView: {
-    backgroundColor: "#FFC0CB",
-    borderRadius: 30,
-    width: "70%",
-    height: 45,
-    marginBottom: 20,
+  input: {
+    height: 80,
+    textAlign: "center",
+    width: "50%",
+    fontSize: 50,
+    marginTop: 24,
+    color: "#FFCB1F",
   },
-
-  TextInput: {
-    height: 50,
-    flex: 1,
-    marginLeft : 20,
-    padding: 10,
+  button: {
+    backgroundColor: "#1D1D1B",
   },
-
-  forgot_button: {
-    height: 30,
-    marginBottom: 30,   
+  buttonText: {
+    alignSelf: "center",
+    padding: 30,
+    fontSize: 25,
+    color: "#FFCB1F",
+    fontWeight: "bold",
   },
-
-  loginBtn: {
-    width: "80%",
-    borderRadius: 25,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40,
-    backgroundColor: "#FF1473",
-  },
-
-  loginText: {
-    color: "#fff",
+  result: {
+    alignSelf: "center",
+    color: "#FFCB1F",
+    fontSize: 65,
+    padding: 15,
   },
 });

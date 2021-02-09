@@ -1,28 +1,22 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from "react-native";
 
 export default function App() {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("./assets/favicon.png")} />
+      <Image style={styles.image} source={require("./assets/loginImage.png")} />
 
       <StatusBar style="auto" />
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Email."
+          placeholder="email"
           placeholderTextColor="#003f5c"
           onChangeText={(email) => setEmail(email)}
         />
@@ -31,7 +25,7 @@ export default function App() {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Password."
+          placeholder="password"
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
@@ -43,7 +37,7 @@ export default function App() {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>LOGIN</Text>
+        <Text style={styles.loginText}>Login</Text>
       </TouchableOpacity>
     </View>
   );
@@ -61,26 +55,24 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
 
-  inputView: {
+  inputView: {  
     backgroundColor: "#FFC0CB",
     borderRadius: 30,
     width: "70%",
     height: 45,
     marginBottom: 20,
-
-    alignItems: "center",
   },
 
   TextInput: {
     height: 50,
     flex: 1,
-    padding: 10,
     marginLeft: 20,
+    padding: 10,
   },
 
   forgot_button: {
     height: 30,
-    marginBottom: 30,   
+    marginBottom: 30,
   },
 
   loginBtn: {
@@ -90,7 +82,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 40,
-    backgroundColor: "#FF1493",
+    backgroundColor: "#FF1473",
   },
 
   loginText: {
